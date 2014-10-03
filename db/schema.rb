@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003193755) do
+ActiveRecord::Schema.define(version: 20141003194019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "routes", force: true do |t|
+    t.integer  "line_id"
+    t.string   "name"
+    t.string   "colour"
+    t.string   "stripe"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stations", force: true do |t|
     t.float    "latitude"
