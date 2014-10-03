@@ -23,5 +23,6 @@ group :development, :test do
   gem 'spring-commands-rspec', '~> 1.0.2'
   gem 'guard-rspec'
   gem 'rb-fsevent' if `uname` =~ /Darwin/
+  gem 'annotate', '~> 2.6.5'
 end
 
