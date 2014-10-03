@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003203531) do
+ActiveRecord::Schema.define(version: 20141003212535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20141003203531) do
   add_index "lines", ["station_a_id"], name: "index_lines_on_station_a_id", using: :btree
   add_index "lines", ["station_b_id"], name: "index_lines_on_station_b_id", using: :btree
 
-  create_table "routes", force: true do |t|
+  create_table "metro_routes", force: true do |t|
     t.integer  "line_id"
     t.string   "name"
     t.string   "colour"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141003203531) do
     t.datetime "updated_at"
   end
 
-  add_index "routes", ["line_id"], name: "index_routes_on_line_id", using: :btree
+  add_index "metro_routes", ["line_id"], name: "index_metro_routes_on_line_id", using: :btree
 
   create_table "stations", force: true do |t|
     t.float    "latitude"
