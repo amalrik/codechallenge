@@ -16,6 +16,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development do
   gem 'spring'
+  gem 'pry'
 end
 
 group :development, :test do
