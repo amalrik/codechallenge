@@ -3,7 +3,7 @@
 # Table name: metro_routes
 #
 #  id         :integer          not null, primary key
-#  line_id    :integer
+#  line       :integer
 #  name       :string(255)
 #  colour     :string(255)
 #  stripe     :string(255)

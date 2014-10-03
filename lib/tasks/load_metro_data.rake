@@ -9,7 +9,7 @@ namespace :load_metro_data do
 
   desc "load csv files with metro routes information"
   task load_routes: :environment do
-    file = "db/routes.csv"
+    file = "db/metro_routes.csv"
     import_csv file
   end
 
@@ -23,13 +23,23 @@ namespace :load_metro_data do
     model = parse_file_name(file_name)
     csv_text = File.read(file_name)
     csv = CSV.parse(csv_text, :headers => true)
+    binding.pry
     csv.each do |row|
       eval "#{model}.create!(row.to_hash)"
     end
   end
 
   def parse_file_name(file_name)
-    obj = file_name.gsub(/.*\//,"").gsub(/\.csv/,"")
-    obj.singularize.capitalize
+    model_name = strip_directory_extension file_name
+    first,second = model_name.split("_")
+    if second 
+      "#{first.singularize.capitalize}#{second.singularize.capitalize}"
+    else
+      first.singularize.capitalize
+    end
+  end
+
+  def strip_directory_extension(file_name)
+    file_name.gsub(/.*\//,"").gsub(/\.csv/,"")
   end
 end
