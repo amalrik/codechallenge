@@ -23,7 +23,7 @@ namespace :load_metro_data do
     model = parse_file_name(file_name)
     csv_text = File.read(file_name)
     csv = CSV.parse(csv_text, :headers => true)
-    binding.pry
+    
     csv.each do |row|
       eval "#{model}.create!(row.to_hash)"
     end

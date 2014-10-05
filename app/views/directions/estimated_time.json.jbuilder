@@ -1,0 +1,1 @@
+json.estimated_time "#{@est_time} minutes"

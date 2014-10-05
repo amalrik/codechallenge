@@ -12,6 +12,31 @@ class Graph
     end
   end
 
+  def some_path(start, finish)
+    visited = []
+    queue   = []
+    over    = false
+
+    visited << start
+    @vertices[start].each do |key, val|
+      queue.push({key => val}) unless visited.include? key
+    end
+
+    while(queue)
+      step = queue.pop
+      if step.keys.first == finish
+        visited << step.keys.first
+        break
+      end
+      visited << step.keys.first
+      @vertices[step.keys.first].each do |key, val|
+        queue.push({key => val}) unless visited.include? key
+      end
+    end
+
+    binding.pry
+  end
+
   def shortest_path(start, finish)
     maxint = (2**(0.size * 8 -2) -1)
     distances = {} # Distance from start to node
@@ -56,6 +81,42 @@ class Graph
     end
     
     return distances
+  end
+
+  def estimated_time(start,finish)
+    path = shortest_path(start, finish)
+    index, @cost = 0, 0
+    line_list = []
+    loop do 
+      line_list << find_line(path[index], path[index+1])
+      break if index == path.size - 2
+      index += 1
+    end
+
+    @cost = calculate_acumulated_cost(line_list)
+    #binding.pry
+  end
+
+  def calculate_acumulated_cost(line_list)
+    cost, index = 0, 0
+    loop do
+      cost += take_cost(line_list[index], line_list[index+1]) 
+      break if index == line_list.size - 2
+      index += 1
+    end
+    cost
+  end
+
+  def take_cost(cur_line, next_line)
+    if cur_line == next_line
+      3
+    else
+      12
+    end
+  end
+
+  def find_line(current_st, next_st)
+    Line.where("(station1 = ? AND station2 = ?) OR station1 = ? AND station2 = ?", current_st, next_st, next_st, current_st).first.line
   end
 
   def to_s

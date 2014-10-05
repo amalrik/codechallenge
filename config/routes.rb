@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resource :directions, :only => [] do
     member do
-      get 'simple_path'
+      get 'shortest_path'
+      get 'estimated_time'
     end
   end
 end
