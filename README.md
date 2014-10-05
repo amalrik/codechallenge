@@ -22,3 +22,22 @@ Observações:
 Recursos: 
 [1] https://commons.wikimedia.org/wiki/London_Underground_geographic_maps/CSV (para facilitar os arquivos foram inseridos no respositório.) 
 
+
+Para Verificar Funcionamento
+----------------------------
+* local:
+  * clone o repositorio.
+  * bundle
+  * rake db:migrate
+  * carregar as informações do metro:
+    1. rake load_metro_data:load_lines         
+    2. rake load_metro_data:load_routes        
+    3. rake load_metro_data:load_stations
+  * rails s
+  * Pronto voce pode usar a aplicação com algum cliente http como curl, ex:
+  ```
+  curl 'http://localhost:3000//directions/simple_path.json?orig=1&dest=5'
+  [{"id":"73"},{"id":"182"},{"id":"194"},{"id":"5"}]
+  curl 'http://localhost:3000//directions/simple_path.json?orig=1&dest=9'
+  [{"id":"265"},{"id":"110"},{"id":"17"},{"id":"74"},{"id":"99"},{"id":"236"},{"id":"229"},{"id":"273"},{"id":"107"},{"id":"192"},{"id":"277"},{"id":"89"},{"id":"145"},{"id":"123"},{"id":"95"},{"id":"160"},{"id":"266"},{"id":"303"},{"id":"31"},{"id":"9"}]
+  ```
