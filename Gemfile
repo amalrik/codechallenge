@@ -20,6 +20,8 @@ group :development do
   gem 'pry'
 end
 
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'spring-commands-rspec', '~> 1.0.2'
