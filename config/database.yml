@@ -78,8 +78,3 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: metro_man_production
-  username: metro_man
-  password: <%= ENV['METRO_MAN_DATABASE_PASSWORD'] %>
