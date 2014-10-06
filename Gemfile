@@ -27,6 +27,7 @@ group :development, :test do
   gem 'spring-commands-rspec', '~> 1.0.2'
   gem 'guard-rspec'
   gem 'annotate', '~> 2.6.5'
+  gem 'capybara',                       '~> 2.2.1'
 end
 
 group :test, :darwin do
