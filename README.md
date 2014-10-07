@@ -42,6 +42,8 @@ Para Verificar Funcionamento
   [{"id":"265"},{"id":"110"},{"id":"17"},{"id":"74"},{"id":"99"},{"id":"236"},{"id":"229"},{"id":"273"},{"id":"107"},{"id":"192"},{"id":"277"},{"id":"89"},{"id":"145"},{"id":"123"},{"id":"95"},{"id":"160"},{"id":"266"},{"id":"303"},{"id":"31"},{"id":"9"}]
   curl 'http://localhost:3000/directions/estimated_time.json?orig=1&dest=5'
   {"estimated_time":"6 minutes"}
+  curl 'http://localhost:3000/directions/some_path.json?orig=1&dest=5'
+  [{"id":"73"},{"id":"182"},{"id":"194"},{"id":"5"}]
   ```
 * Live- Heroku:
   * Deixei uma instancia rodando no heroku para conferir, basta usar um client http apontando para http://sleepy-reef-3212.herokuapp.com/. ex:
