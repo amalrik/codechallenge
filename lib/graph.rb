@@ -1,6 +1,9 @@
 require 'priority_queue'
 
 class Graph
+  SAME_STATION_MINS = 3 
+  CHANGE_STATION_MINS = 12
+
   def initialize()
     @vertices = {}
   end
@@ -117,9 +120,9 @@ class Graph
 
   def take_cost(cur_line, next_line)
     if cur_line == next_line
-      3
+      SAME_STATION_MINS
     else
-      12
+      CHANGE_STATION_MINS
     end
   end
 
