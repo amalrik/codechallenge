@@ -1,4 +1,5 @@
 require 'priority_queue'
+
 class Graph
   def initialize()
     @vertices = {}
@@ -14,27 +15,35 @@ class Graph
 
   def some_path(start, finish)
     visited = []
-    queue   = []
     over    = false
+    path    = []
 
-    visited << start
-    @vertices[start].each do |key, val|
-      queue.push({key => val}) unless visited.include? key
-    end
+    step  = Station.new(start.to_s, nil)
+    queue = []
+    queue << step
 
-    while(queue)
-      step = queue.pop
-      if step.keys.first == finish
-        visited << step.keys.first
-        break
+    while(!queue.empty? && !over)
+      step = queue.shift
+      if step.node == finish
+        over = true
+      else
+        visited << step.node
+        
+        unvisited_neighbors(step.node, visited).each do |neighbor|
+          queue.push Station.new(neighbor, step) 
+        end
       end
-      visited << step.keys.first
-      @vertices[step.keys.first].each do |key, val|
-        queue.push({key => val}) unless visited.include? key
-      end
     end
-
-    binding.pry
+    
+    if over
+      while step.parent
+        path.unshift step.node
+        step = step.parent
+      end
+    else
+      "not found"
+    end
+    path
   end
 
   def shortest_path(start, finish)
@@ -94,7 +103,6 @@ class Graph
     end
 
     @cost = calculate_acumulated_cost(line_list)
-    #binding.pry
   end
 
   def calculate_acumulated_cost(line_list)
@@ -121,6 +129,19 @@ class Graph
 
   def to_s
     return @vertices.inspect
+  end
+
+  private
+
+  class Station < Struct.new(:node, :parent)
+  end
+
+  def unvisited_neighbors(node, visited)
+    neighbors = []
+    @vertices[node].keys.reverse.each do |key|
+      neighbors << key unless visited.include?(key) 
+    end
+    neighbors
   end
 end
 

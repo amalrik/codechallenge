@@ -1,4 +1,9 @@
 class DirectionsController < ApplicationController
+  def some_path
+    @path = Metro_Graph.some_path(params[:orig], params[:dest])
+    render :json => { :error => 'not found' }, :status => 422 if @path == "not found"
+  end
+
   def shortest_path
     @path = Metro_Graph.shortest_path(params[:orig], params[:dest])
   end
